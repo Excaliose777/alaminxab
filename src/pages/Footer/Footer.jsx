@@ -22,7 +22,7 @@ const Footer = () => {
 
     tl.from(".title", {
       y: "100%",
-      duration: 2,
+      duration: 1.25,
       // opacity:0,
     });
   }, []);
