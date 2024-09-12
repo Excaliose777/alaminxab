@@ -1,4 +1,4 @@
-.about{
+.about {
   position: relative;
   // mix-blend-mode: difference;
   height: 100vh;
@@ -11,43 +11,43 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap:30px;
+  gap: 30px;
   // border-bottom: 1px solid white;
-  
-  @media (max-width:1000px) {
+
+  @media (max-width: 1000px) {
     background-color: black;
   }
-  &__topText{
+  &__topText {
     display: flex;
     flex-direction: column;
     text-align: center;
     letter-spacing: -0.09em;
     font-size: 4.5rem;
-    @media (max-width:1024px) {
+    @media (max-width: 1024px) {
       font-size: 4vw;
     }
-    @media (max-width:768px) {
+    @media (max-width: 768px) {
       font-size: 4vw;
     }
 
-    span{
+    span {
       overflow: hidden;
     }
   }
 
-  &__bottomText{
+  &__bottomText {
     display: flex;
     flex-direction: column;
     text-align: center;
     font-size: 2rem;
-    @media (max-width:1024px) {
+    @media (max-width: 1024px) {
       font-size: 2.5vw;
     }
-    @media (max-width:768px) {
+    @media (max-width: 768px) {
       font-size: 2.8vw;
     }
 
-    span{
+    span {
       // border: 1px solid red;
       overflow: hidden;
     }

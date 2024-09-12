@@ -1,11 +1,10 @@
-import './ImageBG.scss'
-import {gsap} from 'gsap'
-import { useGSAP } from '@gsap/react'
-import ScrollTrigger from 'gsap/ScrollTrigger'
-gsap.registerPlugin(useGSAP,ScrollTrigger)
+import "./ImageBG.scss";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import ScrollTrigger from "gsap/ScrollTrigger";
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-const Image = ({image}) => {
-
+const Image = ({ image }) => {
   // useGSAP(() => {
   //   gsap.to('.imageMain__container', {
   //     y:'-25%',
@@ -21,12 +20,13 @@ const Image = ({image}) => {
   // },[])
 
   return (
-    <div className='imageMain'>
-      <div className='imageMain__container' style={{backgroundImage:`url(${image})`}}>
-        
-      </div>
+    <div className="imageMain">
+      <div
+        className="imageMain__container"
+        style={{ backgroundImage: `url(${image})` }}
+      ></div>
     </div>
-    )
-}
+  );
+};
 
-export default Image
+export default Image;

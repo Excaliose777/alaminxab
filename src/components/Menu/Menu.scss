@@ -1,4 +1,4 @@
-.menu{
+.menu {
   font-family: BebasNeue;
   overflow: hidden;
   width: 50%;
@@ -15,11 +15,11 @@
   transform-origin: top right;
   // transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1);
   transition: none;
-  @media (max-width:1024px) {
+  @media (max-width: 1024px) {
     width: 100%;
   }
 
-  &__container{
+  &__container {
     padding: 3vw;
     width: 100%;
     height: 100%;
@@ -27,35 +27,33 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content:space-evenly;
+    justify-content: space-evenly;
     // border: 1px solid red;
   }
 
-  &__headerContainer{
+  &__headerContainer {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    @media (max-width:1024px) {
+    @media (max-width: 1024px) {
       font-size: 4vw;
     }
   }
 
-  &__header{
+  &__header {
     overflow: hidden;
   }
-  &__headerBottom{
+  &__headerBottom {
     color: gray;
   }
 
-
-
-  &__menu{
+  &__menu {
     width: 100%;
     overflow: hidden;
-    
-    .index{
+
+    .index {
       text-decoration: none;
       color: inherit;
       font-size: 2.5vw;
@@ -64,13 +62,13 @@
       justify-content: space-between;
       cursor: pointer;
       // border: 1px solid red;
-      @media (max-width:1024px) {
+      @media (max-width: 1024px) {
         font-size: 7vw;
       }
     }
   }
 
-  &__links{
+  &__links {
     position: relative;
     width: 100%;
     display: flex;
@@ -78,19 +76,18 @@
     justify-content: space-between;
     overflow: hidden;
     // border: 1px solid red;
-    @media (max-width:1024px) {
+    @media (max-width: 1024px) {
       font-size: 5vw;
       bottom: 45px;
     }
   }
 }
 
-
-.bar{
+.bar {
   position: relative;
   width: 100%;
   height: 0.05em;
-  background-color: black;      
+  background-color: black;
   transform: scaleX(1);
   transform-origin: center center;
   transition: transform 0.3s;
@@ -101,17 +98,17 @@
 //     transform: scaleX(1);
 //   }
 
-.link{
+.link {
   // transform: translateY(50%);
-  a{
+  a {
     text-decoration: none;
     color: inherit;
   }
-  .bar{
+  .bar {
     transform: scaleX(0);
   }
-  &:hover{
-    .bar{
+  &:hover {
+    .bar {
       transform: scaleX(1);
     }
   }

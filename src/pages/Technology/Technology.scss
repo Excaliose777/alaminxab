@@ -1,45 +1,45 @@
-.technology{
+.technology {
   position: relative;
   height: 100vh;
   width: 100%;
   // background-color: black;
   // mix-blend-mode: difference;
   color: white;
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'Satoshi';
+  font-family: "Satoshi";
   overflow: hidden;
   flex-grow: 1;
   flex-shrink: 0;
   letter-spacing: -0.09em;
   gap: 5vh;
-  @media (max-width:1000px) {
+  @media (max-width: 1000px) {
     background-color: black;
   }
 
-  &__header{
+  &__header {
     color: gray;
-    .bar{
+    .bar {
       position: relative;
       width: 100%;
       height: 0.07em;
-      background-color: white;      
+      background-color: white;
       transform: scaleX(0);
       transform-origin: center center;
       transition: transform 0.3s;
     }
 
-    &:hover{
+    &:hover {
       color: white;
-      .bar{
+      .bar {
         transform: scaleX(1);
       }
     }
   }
 
-  &__wrapper{
+  &__wrapper {
     // border: 1px solid red;
     flex-wrap: wrap;
     display: flex;
@@ -48,19 +48,19 @@
     margin: 0 auto;
     width: 80%;
   }
-  &__items{
+  &__items {
     font-size: 2.5vw;
     border: 1px solid white;
-    padding:0.1vw 1.5vw;    
+    padding: 0.1vw 1.5vw;
     border-radius: 2vw;
-    margin: .5vw;
+    margin: 0.5vw;
     color: gray;
 
-    @media (max-width:840px) {
+    @media (max-width: 840px) {
       font-size: 6vw;
     }
 
-    &:hover{
+    &:hover {
       color: white;
     }
   }

@@ -1,4 +1,4 @@
-.preloader{
+.preloader {
   height: 100dvh;
   width: 100%;
   background-color: white;
@@ -10,9 +10,9 @@
   font-family: BebasNeue;
   pointer-events: none;
 
-
-  &__topSection, &__bottomSection{
-    flex:1;
+  &__topSection,
+  &__bottomSection {
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,15 +24,15 @@
     z-index: 1;
   }
 
-  &__topSection{
+  &__topSection {
     width: 100%;
     background-color: black;
     overflow: hidden;
-    top:0;
+    top: 0;
     transform: translateY(0%);
-    // border-bottom: 1px solid white; 
+    // border-bottom: 1px solid white;
 
-    .split-textTop{
+    .split-textTop {
       text-transform: uppercase;
       position: absolute;
       font-size: 5em;
@@ -40,11 +40,11 @@
       display: inline-block;
       left: 0;
       right: 0;
-      top:100%;
+      top: 100%;
       transform: translateY(-50%);
     }
   }
-  &__bottomSection{
+  &__bottomSection {
     width: 100%;
     background-color: black;
     overflow: hidden;
@@ -52,7 +52,7 @@
     transform: translateY(0%);
     // border-top: 1px solid white;
 
-    .split-textBottom{
+    .split-textBottom {
       text-transform: uppercase;
       position: absolute;
       display: inline-block;
@@ -65,7 +65,7 @@
       transform: translateY(50%);
     }
 
-    .preloader__loadingBar{
+    .preloader__loadingBar {
       position: absolute;
       inset: 0;
       height: 0.2em;
@@ -77,13 +77,13 @@
     }
   }
 
-  &__name{
+  &__name {
     overflow: hidden;
     // height: 100%;
     // border: 1px solid red;
   }
-  
-  &__nameText{
+
+  &__nameText {
     transform: translateY(0px);
   }
 }

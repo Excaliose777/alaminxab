@@ -1,4 +1,4 @@
-.services{
+.services {
   height: 100vh;
   width: 100%;
   position: relative;
@@ -12,61 +12,60 @@
   justify-content: center;
   row-gap: 10vh;
   font-size: 8rem;
-  @media (max-width:1000px) {
+  @media (max-width: 1000px) {
     background-color: black;
   }
 
-  @media (max-width:1024px) {
+  @media (max-width: 1024px) {
     font-size: 8.5vw;
   }
-  
-  @media (max-width:768px) {
+
+  @media (max-width: 768px) {
     font-size: 8vw;
   }
   // border-bottom: 1px solid white;
 
-  &__header{
+  &__header {
     color: gray;
     font-size: 2.5rem;
-    .bar{
+    .bar {
       position: relative;
       width: 100%;
       height: 0.03em;
-      background-color: white;      
+      background-color: white;
       transform: scaleX(0);
       transform-origin: center center;
       transition: transform 0.3s;
     }
 
-    @media (max-width:1024px) {
+    @media (max-width: 1024px) {
       font-size: 3vw;
     }
 
-    &:hover{
+    &:hover {
       color: white;
-      .bar{
+      .bar {
         transform: scaleX(1);
       }
     }
 
-    @media (max-width:768px) {
+    @media (max-width: 768px) {
       font-size: 3vw;
     }
   }
 
-  &__box{
+  &__box {
     width: 100%;
     text-align: center;
     cursor: pointer;
     position: relative;
-
   }
 
-  &__service{
+  &__service {
     position: relative;
     overflow: hidden;
 
-    .serviceBar{
+    .serviceBar {
       width: 100%;
       height: 0.02em;
       background-color: white;
@@ -75,24 +74,23 @@
       // transition: transform 0.5s;
     }
 
-    .smallText{ 
+    .smallText {
       position: absolute;
-      top:0;
+      top: 0;
       right: 0;
       transform: translateX(-50%);
       font-size: 2rem;
       opacity: 0;
       transition: opacity 0.5s ease-in-out;
 
-      @media (max-width:768px) {
+      @media (max-width: 768px) {
         font-size: 3rem;
         transform: translateX(-20%);
-
       }
     }
-  
-    &:hover{
-      .smallText{
+
+    &:hover {
+      .smallText {
         opacity: 1;
       }
       // .serviceBar{
@@ -101,4 +99,3 @@
     }
   }
 }
-
