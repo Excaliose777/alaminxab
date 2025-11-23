@@ -1,0 +1,210 @@
+// @import "../node_modules/include-media/dist/include-media";
+// @import "./pages/About/About.scss";
+
+$breakpoints: (
+  "phone": 768px,
+  "tablet": 1024px,
+  "desktop": 1920px,
+) !default;
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/*
+  2. Remove default margin
+*/
+* {
+  margin: 0;
+}
+/*
+  Typographic tweaks!
+  3. Add accessible line-height
+  4. Improve text rendering
+*/
+body {
+  font-size: clamp(16px, 1.6rem, 1.6rem);
+  // font-size: clamp(16px, 1.2vw, 19px);
+
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  letter-spacing: -0.03em;
+  background-color: black;
+  // color: white;
+  min-height: 100vh;
+}
+
+html {
+  font-size: calc(100vw / 1728 * 10);
+  overflow: auto;
+  // scroll-behavior: smooth;
+  // overflow: hidden; CHECK WITH THIS
+  // @include media("<phone") {
+  //   font-size: calc(100vw / 750 * 10);
+  // }
+}
+
+/*
+  5. Improve media defaults
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+/*
+  6. Remove built-in form typography styles
+*/
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+/*
+  7. Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+h1 {
+  font-size: 16rem;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+/*
+  8. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
+::-webkit-scrollbar {
+  width: 0.09em;
+}
+
+// ::-webkit-scrollbar:hover{
+//   width: 6em;
+// }
+
+::-webkit-scrollbar-track {
+  background: black;
+  mix-blend-mode: difference;
+}
+
+::-webkit-scrollbar-thumb {
+  background: white;
+  mix-blend-mode: difference;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: gray;
+}
+
+.revealer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100svh;
+  transform-origin: center top;
+  background-color: var(--fg);
+  pointer-events: none;
+  z-index: 2;
+}
+
+// ::view-transition-old(page) {
+//   z-index: 1;
+//   animation: oldViewAnim 1500ms cubic-bezier(0.87, 0, 0.13, 1) forwards;
+// }
+
+// @keyframes oldViewAnim {
+//   from {
+//     opacity: 1;
+//     transform: translateY(0);
+//   }
+//   to {
+//     opacity: 0.2;
+//     transform: translateY(-35%);
+//   }
+// }
+
+// ::view-transition-new(page) {
+//   animation: newViewAnim 1500ms cubic-bezier(0.87, 0, 0.13, 1) forwards;
+//   z-index: 10000;
+// }
+
+// @keyframes newViewAnim {
+//   from {
+//     clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+//   }
+//   to {
+//     clip-path: polygon(0 100%, 100% 100%, 100% 0%, 0% 0%);
+//   }
+// }
+
+// ::view-transition-group(page) {
+//   z-index: auto !important;
+// }
+
+// ::view-transition-image-pair(page) {
+//   isolation: isolate;
+//   will-change: transform, opacity, clip-path;
+//   z-index: 1;
+// }
+
+::view-transition-old(page),
+::view-transition-new(page) {
+  animation: none !important;
+}
+
+::view-transition-group(page) {
+  z-index: auto !important;
+}
+
+::view-transition-image-pair(page) {
+  isolation: isolate;
+  will-change: transform, opacity, clip-path;
+  z-index: 1;
+}
+
+::view-transition-new(page) {
+  z-index: 10000;
+  animation: none !important;
+}
+
+::view-transition-old(page) {
+  z-index: 1;
+  animation: none !important;
+}
+
+@font-face {
+  font-family: BebasNeue;
+  src: url("/fonts/BebasNeue/BebasNeue-Regular.woff2");
+}
+
+@font-face {
+  font-family: Satoshi;
+  src: url("/fonts/Satoshi/Satoshi-Regular.woff2");
+}
+
+@font-face {
+  font-family: Supreme;
+  src: url("/fonts/Supreme/Supreme-Regular.woff2");
+}

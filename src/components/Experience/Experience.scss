@@ -1,0 +1,74 @@
+.experience {
+  height: 100vh;
+  width: 100%;
+  // background-color: black;
+  color: gray;
+  font-family: Satoshi;
+  position: relative;
+  letter-spacing: -0.09em;
+  // border: 1px solid white;
+  // mix-blend-mode: difference;
+  @media (max-width: 1000px) {
+    background-color: black;
+  }
+  &__header {
+    .bar {
+      position: relative;
+      width: 100%;
+      height: 0.07em;
+      background-color: white;
+      transform: scaleX(0);
+      transform-origin: center center;
+      transition: transform 0.3s;
+    }
+
+    &:hover {
+      color: white;
+      .bar {
+        transform: scaleX(1);
+      }
+    }
+  }
+  &__main {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    // border: 1px solid white;
+  }
+
+  &__experienceCover {
+    // border: 1px solid red;
+    height: 70%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+  }
+
+  &__experience {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    // border: 1px solid red;
+  }
+
+  &__date {
+    color: gray;
+    font-weight: bold;
+    font-size: 8rem;
+    // text-align: center;
+    // border: 1px solid red;
+    transform: translateY(0);
+  }
+
+  &__company {
+    // color: white;
+    font-weight: bold;
+    font-size: 8rem;
+  }
+}

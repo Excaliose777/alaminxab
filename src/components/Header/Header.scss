@@ -12,6 +12,10 @@
   padding: 10px;
   overflow: hidden;
   justify-content: space-between;
+  &.header--black {
+    background-color: rgba(0, 0, 0, 0.3);
+    mix-blend-mode: normal;
+  }
   // pointer-events: none;
 
   // color: white;

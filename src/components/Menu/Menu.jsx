@@ -1,30 +1,51 @@
+"use client";
 import "./Menu.scss";
 import TimeDisplay from "../../utils/Time/TimeDisplay";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useEffect, useRef } from "react";
+import { startTransition, useEffect, useRef } from "react";
+// import Link from "next/link";
+import { useRouter } from "next/navigation";
 gsap.registerPlugin(useGSAP);
 
-const menuData = [
+// const menuData = [
+//   {
+//     index: "01",
+//     name: "Home",
+//     href: "home",
+//   },
+//   {
+//     index: "02",
+//     name: "About",
+//     href: "about",
+//   },
+//   {
+//     index: "03",
+//     name: "Services",
+//     href: "services",
+//   },
+//   {
+//     index: "04",
+//     name: "Experience",
+//     href: "experience",
+//   },
+// ];
+
+const menuData2 = [
   {
     index: "01",
     name: "Home",
-    href: "home",
+    href: "/",
   },
   {
     index: "02",
-    name: "About",
-    href: "about",
+    name: "Works",
+    href: "/Works",
   },
   {
     index: "03",
-    name: "Services",
-    href: "services",
-  },
-  {
-    index: "04",
-    name: "Experience",
-    href: "experience",
+    name: "Lab",
+    href: "/Lab",
   },
 ];
 const linkData = [
@@ -49,6 +70,7 @@ const linkData = [
 const Menu = ({ menuOpen, setMenuOpen }) => {
   const menuRef = useRef(null);
   const tl = useRef(gsap.timeline({ paused: true })).current;
+  const router = useRouter();
 
   // const tl = gsap.timeline()
   // tl.set('.menu', {scale:0})
@@ -86,14 +108,46 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
     }
   }, [menuOpen]);
 
-  const handleScroll = async (section) => {
-    await tl.reverse();
-    // tl.clear()
+  // const handleLinkClick = async (link, e) =>
+  //   startTransition(async () => {
+  //     if (e) e.preventDefault();
+
+  //     // Reverse animation and wait until it is done
+  //     await tl.reverse().duration(1.5);
+
+  //     // Close the menu state
+  //     setMenuOpen(false);
+
+  //     // Now navigate
+  //     router.push(link);
+  //   });
+
+  // const handleScroll = async (section) => {
+  //   await tl.reverse();
+  //   // tl.clear()
+  //   setMenuOpen(false);
+  //   const element = document.getElementById(section);
+  //   if (element) {
+  //     element.scrollIntoView({ behavior: "smooth" });
+  //   }
+  // };
+
+  const handleLinkClick = async (href, e) => {
+    e.preventDefault();
+
+    // close animation
+    await tl.reverse().duration(1.5);
     setMenuOpen(false);
-    const element = document.getElementById(section);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+
+    // Trigger the view transition
+    // if (document.startViewTransition) {
+    //   document.startViewTransition(() => {
+    //     router.push(href);
+    //   });
+    // } else {
+    // fallback
+    router.push(href);
+    // }
   };
 
   return (
@@ -111,7 +165,7 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
             </div>
           </div>
         </div>
-
+        {/* 
         {menuData.map((menu, i) => (
           <div className="menu__menu" key={i}>
             <div
@@ -119,6 +173,20 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
               onClick={() => {
                 handleScroll(menu.href);
               }}
+            >
+              <div>{menu.index}</div>
+              <div>{menu.name}</div>
+              <div>&#8623;</div>
+            </div>
+            <div className="bar"></div>
+          </div>
+        ))} */}
+
+        {menuData2.map((menu, i) => (
+          <div className="menu__menu" key={i}>
+            <div
+              className="index"
+              onClick={(e) => handleLinkClick(menu.href, e)}
             >
               <div>{menu.index}</div>
               <div>{menu.name}</div>
