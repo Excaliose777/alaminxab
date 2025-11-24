@@ -68,7 +68,7 @@
 
 .lab .card {
   position: relative;
-  width: 45vw;
+  width: 25vw;
   aspect-ratio: 0.75;
   border-radius: 2vw;
   overflow: hidden;
@@ -76,6 +76,10 @@
   text-align: center;
   text-transform: uppercase;
   border: 0.5vw solid #f1f1f1;
+  padding: 1.5vw 0.5vw;
+  @media (max-width: 1000px) {
+    width: 65vw;
+  }
 
   img {
     position: absolute;

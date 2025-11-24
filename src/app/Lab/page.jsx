@@ -1,6 +1,6 @@
 "use client";
 import "./lab.scss";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -52,6 +52,11 @@ const page = () => {
   const containerRef = useRef(null);
   const pinHeightRef = useRef(null);
   const circlesRef = useRef([]);
+
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" ? window.innerWidth < 1000 : false
+  );
+
   useGSAP(() => {
     const root = rootRef.current;
     const container = containerRef.current;
@@ -84,7 +89,7 @@ const page = () => {
       {
         rotation: -30, // Ending angle
         ease: "power2.inOut", // Non-linear movement
-        stagger: 0.04, // Delay between the start of each circle
+        stagger: isMobile ? 0.1 : 0.04, // Delay between the start of each circle
         scrollTrigger: {
           trigger: pinHeight, // Listening to pinHeight
           start: "top top",
@@ -93,6 +98,12 @@ const page = () => {
         },
       }
     );
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 1000);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
   return (
     <>
