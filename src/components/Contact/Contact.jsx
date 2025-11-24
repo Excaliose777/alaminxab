@@ -123,7 +123,7 @@ const Contact = () => {
             ))}
 
             <div className="contact__link">
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+              <a href="/Resume.pdf" target="_blank" rel="noopener noreferrer">
                 Resume
               </a>
               <div className="bar"></div>

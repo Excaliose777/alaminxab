@@ -1,94 +1,40 @@
-.lab {
-  height: 100vh;
+.lab .scroll {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.lab .header {
+  position: absolute;
   width: 100%;
-  background-color: #0c0c0c;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4rem 3rem;
+  text-align: center;
+  top: 25px;
+  left: 0;
+  font: 500 normal 13px/0.9 "IBM Plex Mono";
+  text-transform: uppercase;
+}
+.lab .pin-height {
+  height: 400vh;
+}
+.lab .container {
   position: relative;
-
-  .lab__container {
-    h1 {
-      font-size: 30rem;
-      font-weight: 500;
-      color: #cc001e;
-      font-family: BebasNeue;
-    }
-
-    @media (max-width: 1000px) {
-      position: relative;
-
-      h1 {
-        font-size: 30rem;
-      }
-    }
-  }
+  height: 100vh;
+  overflow: hidden; /* Hides anything exceeding the container */
 }
-
-.lab__content {
-  min-height: 100vh;
-  background-color: #0c0c0c;
-  padding: 2rem 6rem;
-
-  @media (max-width: 1000px) {
-    padding: 2rem 16rem;
-  }
+.lab .circle {
+  width: 300%;
+  aspect-ratio: 1;
+  position: absolute;
+  top: 50%;
+  left: -100%;
 }
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 5rem;
-
-  @media (max-width: 1300px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  @media (max-width: 900px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr;
-  }
-}
-
-.project-card {
-  border: 1px solid #333;
-  background-color: #111;
-
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  transition: border-color 0.2s ease;
-
-  &:hover {
-    border-color: #666;
-  }
-}
-
-.project-image {
-  width: 100%;
-  height: 280px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.project-title {
-  padding: 1rem;
-  background-color: rgba(0, 0, 0, 0.4);
-
-  p {
-    margin: 0;
-    color: #ffffff;
-    font-size: 2rem;
-    font-family: Satoshi;
-  }
-
-  @media (max-width: 1000px) {
-    p {
-      font-size: 8rem;
-    }
-  }
+.lab .media {
+  width: 25vw;
+  aspect-ratio: 0.74;
+  border-radius: 0.6vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
