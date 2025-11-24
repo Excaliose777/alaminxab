@@ -6,13 +6,46 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(ScrollTrigger);
 
-const Images = [
-  "/images/VoyageHermes/hires-moebius-voyagehermes-1.webp",
-  "/images/VoyageHermes/hires-moebius-voyagehermes-5.webp",
-  "/images/VoyageHermes/hires-moebius-voyagehermes-7.webp",
-  "/images/VoyageHermes/hires-moebius-voyagehermes-1.webp",
-  "/images/VoyageHermes/hires-moebius-voyagehermes-5.webp",
-  "/images/VoyageHermes/hires-moebius-voyagehermes-7.webp",
+// const Images = [
+//   "/images/VoyageHermes/hires-moebius-voyagehermes-1.webp",
+//   "/images/VoyageHermes/hires-moebius-voyagehermes-5.webp",
+//   "/images/VoyageHermes/hires-moebius-voyagehermes-7.webp",
+//   "/images/VoyageHermes/hires-moebius-voyagehermes-1.webp",
+//   "/images/VoyageHermes/hires-moebius-voyagehermes-5.webp",
+//   "/images/VoyageHermes/hires-moebius-voyagehermes-7.webp",
+// ];
+
+const LabData = [
+  {
+    image: "/images/VoyageHermes/hires-moebius-voyagehermes-1.webp",
+    title: "Mesh particles destruction",
+    genre: "Indie Pop",
+  },
+  {
+    image: "/images/VoyageHermes/hires-moebius-voyagehermes-5.webp",
+    title: "Dissolve",
+    genre: "Indie Pop",
+  },
+  {
+    image: "/images/VoyageHermes/hires-moebius-voyagehermes-7.webp",
+    title: "Particle Black Hole",
+    genre: "Indie Pop",
+  },
+  {
+    image: "/images/VoyageHermes/hires-moebius-voyagehermes-1.webp",
+    title: "Snow Flakes",
+    genre: "Indie Pop",
+  },
+  {
+    image: "/images/VoyageHermes/hires-moebius-voyagehermes-5.webp",
+    title: "GSAP Flip",
+    genre: "Indie Pop",
+  },
+  {
+    image: "/images/VoyageHermes/hires-moebius-voyagehermes-7.webp",
+    title: "Neon Waves",
+    genre: "Indie Pop",
+  },
 ];
 const page = () => {
   const rootRef = useRef(null);
@@ -51,7 +84,7 @@ const page = () => {
       {
         rotation: -30, // Ending angle
         ease: "power2.inOut", // Non-linear movement
-        stagger: 0.06, // Delay between the start of each circle
+        stagger: 0.04, // Delay between the start of each circle
         scrollTrigger: {
           trigger: pinHeight, // Listening to pinHeight
           start: "top top",
@@ -70,13 +103,35 @@ const page = () => {
       <section className="lab" ref={rootRef}>
         <div className="pin-height" ref={pinHeightRef}>
           <div className="container" ref={containerRef}>
-            {Images.map((image, index) => (
+            {LabData.map((item, index) => (
               <div
                 className="circle"
                 key={index}
                 ref={(el) => (circlesRef.current[index] = el)}
               >
-                <img className="media" src={image} alt="" />
+                <div className="cards">
+                  <div className="card">
+                    <img src={item.image} alt="" />
+
+                    <div className="card-content">
+                      <p>
+                        <span>Lab</span> <span>{`[0${index + 1}]`}</span>
+                      </p>
+
+                      <div>
+                        <a
+                          className="from"
+                          href="https://www.google.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          View&#8623;
+                        </a>
+                        <h2>{item.title}</h2>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
