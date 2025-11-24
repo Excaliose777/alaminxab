@@ -65,6 +65,12 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.lab .circle,
+.lab .cards,
+.lab .card,
+.lab .card-content {
+  pointer-events: none; // prevent circle layer from blocking clicks
+}
 
 .lab .card {
   position: relative;
@@ -79,6 +85,7 @@
   padding: 1.5vw 0.5vw;
   @media (max-width: 1000px) {
     width: 65vw;
+    padding: 5vw 0.5vw 15vw 0.5vw;
   }
 
   img {
@@ -103,6 +110,7 @@
       font-family: Satoshi;
       font-weight: 600;
       cursor: pointer;
+      pointer-events: auto;
     }
 
     p {

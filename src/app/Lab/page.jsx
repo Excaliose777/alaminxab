@@ -19,32 +19,32 @@ const LabData = [
   {
     image: "/images/VoyageHermes/hires-moebius-voyagehermes-1.webp",
     title: "Mesh particles destruction",
-    genre: "Indie Pop",
+    link: "https://www.google.com",
   },
   {
     image: "/images/VoyageHermes/hires-moebius-voyagehermes-5.webp",
     title: "Dissolve",
-    genre: "Indie Pop",
+    link: "https://www.google.com",
   },
   {
     image: "/images/VoyageHermes/hires-moebius-voyagehermes-7.webp",
     title: "Particle Black Hole",
-    genre: "Indie Pop",
+    link: "https://www.google.com",
   },
   {
     image: "/images/VoyageHermes/hires-moebius-voyagehermes-1.webp",
     title: "Snow Flakes",
-    genre: "Indie Pop",
+    link: "https://www.google.com",
   },
   {
     image: "/images/VoyageHermes/hires-moebius-voyagehermes-5.webp",
     title: "GSAP Flip",
-    genre: "Indie Pop",
+    link: "https://www.google.com",
   },
   {
     image: "/images/VoyageHermes/hires-moebius-voyagehermes-7.webp",
     title: "Neon Waves",
-    genre: "Indie Pop",
+    link: "https://www.google.com",
   },
 ];
 const page = () => {
@@ -132,7 +132,7 @@ const page = () => {
                       <div>
                         <a
                           className="from"
-                          href="https://www.google.com"
+                          href={item.link}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
