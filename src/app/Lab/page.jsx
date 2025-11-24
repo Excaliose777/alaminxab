@@ -1,41 +1,40 @@
 "use client";
 import "./lab.scss";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(ScrollTrigger);
 
 const Images = [
-  "/images/Works/Engravelle.png",
-  "/images/Works/KateLovejoy.png",
-  "/images/Works/Nimbus.png",
-  "/images/Works/TheVCollective.png",
-  "/images/Works/Engravelle.png",
-  "/images/Works/KateLovejoy.png",
-  "/images/Works/Nimbus.png",
-  "/images/Works/TheVCollective.png",
+  "/images/VoyageHermes/hires-moebius-voyagehermes-1.webp",
+  "/images/VoyageHermes/hires-moebius-voyagehermes-5.webp",
+  "/images/VoyageHermes/hires-moebius-voyagehermes-7.webp",
+  "/images/VoyageHermes/hires-moebius-voyagehermes-1.webp",
+  "/images/VoyageHermes/hires-moebius-voyagehermes-5.webp",
+  "/images/VoyageHermes/hires-moebius-voyagehermes-7.webp",
 ];
 const page = () => {
   const rootRef = useRef(null);
   const containerRef = useRef(null);
   const pinHeightRef = useRef(null);
   const circlesRef = useRef([]);
-  useEffect(() => {
+  useGSAP(() => {
     const root = rootRef.current;
     const container = containerRef.current;
     const pinHeight = pinHeightRef.current;
     const circles = circlesRef.current;
 
-    gsap.to(".scroll", {
-      autoAlpha: 0,
-      duration: 0.2,
-      scrollTrigger: {
-        trigger: ".lab",
-        start: "top top",
-        end: "top top-=1",
-        toggleActions: "play none reverse none",
-      },
-    });
+    // gsap.to(".scroll", {
+    //   autoAlpha: 0,
+    //   duration: 0.2,
+    //   scrollTrigger: {
+    //     trigger: ".lab__container",
+    //     start: "top top",
+    //     end: "top top-=1",
+    //     toggleActions: "play none reverse none",
+    //   },
+    // });
 
     ScrollTrigger.create({
       trigger: pinHeight, // Listening to pin-height
@@ -63,22 +62,27 @@ const page = () => {
     );
   }, []);
   return (
-    <section className="lab" ref={rootRef}>
-      <p className="scroll">Lab</p>
-      <div className="pin-height" ref={pinHeightRef}>
-        <div className="container" ref={containerRef}>
-          {Images.map((image, index) => (
-            <div
-              className="circle"
-              key={index}
-              ref={(el) => (circlesRef.current[index] = el)}
-            >
-              <img className="media" src={image} alt="" />
-            </div>
-          ))}
-        </div>
+    <>
+      <div className="lab__container scroll">
+        <h1>Lab</h1>
+        <p>Scroll To View&#8623;</p>
       </div>
-    </section>
+      <section className="lab" ref={rootRef}>
+        <div className="pin-height" ref={pinHeightRef}>
+          <div className="container" ref={containerRef}>
+            {Images.map((image, index) => (
+              <div
+                className="circle"
+                key={index}
+                ref={(el) => (circlesRef.current[index] = el)}
+              >
+                <img className="media" src={image} alt="" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   );
 };
 

@@ -4,6 +4,33 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.lab__container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  h1 {
+    font-size: 30rem;
+    font-weight: 500;
+    color: #cc001e;
+    font-family: BebasNeue;
+  }
+
+  p {
+    color: #ffffff;
+    font-family: Satoshi;
+  }
+
+  @media (max-width: 1000px) {
+    position: relative;
+
+    h1 {
+      font-size: 30rem;
+    }
+  }
+}
 .lab .header {
   position: absolute;
   width: 100%;
