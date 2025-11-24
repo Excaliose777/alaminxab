@@ -12,7 +12,7 @@ gsap.registerPlugin(useGSAP);
 const Header = ({ menuOpen, setMenuOpen }) => {
   // const [openMenu, setOpenMenu] = useState(false)
   const pathname = usePathname();
-  const isWorkPage = pathname === "/Works";
+  // const isWorkPage = pathname === "/Works";
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -61,7 +61,7 @@ const Header = ({ menuOpen, setMenuOpen }) => {
   }, [menuOpen]);
 
   return (
-    <div className={`header ${isWorkPage ? "header--black" : ""}`}>
+    <div className={`header ${/* isWorkPage ? "header--black" : "" */ ""}`}>
       <div className="header__logo">
         <Link
           href="/"

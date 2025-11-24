@@ -23,7 +23,7 @@ export default function ClientWrapper({ children }) {
     return () => context.revert();
   }, []);
 
-  if (loading) return <Preloader timeline={timeline} />;
+  // if (loading) return <Preloader timeline={timeline} />;
 
   return (
     <>
