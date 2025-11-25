@@ -125,11 +125,11 @@ const page = () => {
                     <img src={item.image} alt="" />
 
                     <div className="card-content">
-                      <p>
+                      <p className="card-top">
                         <span>Lab</span> <span>{`[0${index + 1}]`}</span>
                       </p>
 
-                      <div>
+                      <div className="card-bottom">
                         <a
                           className="from"
                           href={item.link}
