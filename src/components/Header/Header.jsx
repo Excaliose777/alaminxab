@@ -47,16 +47,12 @@ const Header = ({ menuOpen, setMenuOpen }) => {
   }, []);
 
   useEffect(() => {
+    const fadeTargets = ".header__logoText, .header__title, .header__location";
+
     if (menuOpen) {
-      gsap.to(".header__logoText, .header__title, .header__location", {
-        delay: 0.25,
-        opacity: 0,
-      });
+      gsap.to(fadeTargets, { delay: 0.25, opacity: 0 });
     } else {
-      gsap.to(".header__logoText, .header__title, .header__location, .header", {
-        delay: 0.25,
-        opacity: 1,
-      });
+      gsap.to(fadeTargets, { delay: 0.25, opacity: 1 });
     }
   }, [menuOpen]);
 
