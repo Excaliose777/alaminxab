@@ -48,7 +48,7 @@ const Header = ({ menuOpen, setMenuOpen }) => {
 
   useEffect(() => {
     if (menuOpen) {
-      gsap.to(".header__logoText, .header__title, .header__location, .header", {
+      gsap.to(".header__logoText, .header__title, .header__location", {
         delay: 0.25,
         opacity: 0,
       });
