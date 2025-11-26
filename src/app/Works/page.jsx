@@ -103,18 +103,19 @@ const page = () => {
       });
     });
 
-    // if (footer) {
-    //   gsap.from(footer, {
-    //     autoAlpha: 0,
-    //     duration: 0.2,
-    //     scrollTrigger: {
-    //       trigger: footer,
-    //       start: "top 50%",
-    //       // end: "top top-=1",
-    //       toggleActions: "play none reverse none",
-    //     },
-    //   });
-    // }
+    gsap.from(".page-footer", {
+      autoAlpha: 0,
+      // y: 50,
+      duration: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".page-footer",
+        start: "top 50vh",
+        end: "bottom bottm",
+        toggleActions: "play none none reverse",
+      },
+    });
+
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
