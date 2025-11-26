@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 import "./works.scss";
+import Image from "next/image";
 
 const page = () => {
   const sectionRef = useRef(null);
@@ -169,7 +170,7 @@ const page = () => {
                     </div>
                     <div>
                       <p className="num">{`[0${index + 1}]`}</p>
-                      <img src={slide.image} alt="" />
+                      <Image fill src={slide.image} alt={slide.title} />
                     </div>
                   </div>
                 </div>

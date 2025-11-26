@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 // const Images = [
@@ -17,19 +18,19 @@ gsap.registerPlugin(ScrollTrigger);
 
 const LabData = [
   {
-    image: "/images/VoyageHermes/hires-moebius-voyagehermes-1.webp",
-    title: "Mesh particles destruction",
-    link: "https://www.google.com",
+    image: "/images/Lab/Positional-Audio.png",
+    title: "ThreeJs Positional Audio",
+    link: "https://r3-f-positional-audio.vercel.app/",
   },
   {
-    image: "/images/VoyageHermes/hires-moebius-voyagehermes-5.webp",
-    title: "Dissolve",
-    link: "https://www.google.com",
+    image: "/images/Lab/DepthMap.png",
+    title: "Depth Map Viewer",
+    link: "https://depth-map777.vercel.app/",
   },
   {
-    image: "/images/VoyageHermes/hires-moebius-voyagehermes-7.webp",
-    title: "Particle Black Hole",
-    link: "https://www.google.com",
+    image: "/images/Lab/CurvedImageCursor.png",
+    title: "Curved Image Cursor",
+    link: "https://curved-image-cursor.vercel.app/",
   },
   {
     image: "/images/VoyageHermes/hires-moebius-voyagehermes-1.webp",
@@ -122,7 +123,7 @@ const page = () => {
               >
                 <div className="cards">
                   <div className="card">
-                    <img src={item.image} alt="" />
+                    <Image fill src={item.image} alt={item.title} />
 
                     <div className="card-content">
                       <p className="card-top">

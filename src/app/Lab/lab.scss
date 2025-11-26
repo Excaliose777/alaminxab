@@ -107,12 +107,16 @@
     .card-top {
       position: absolute;
       top: 5%;
+      mix-blend-mode: difference;
+      color: #ffffff;
     }
     .card-bottom {
       position: absolute;
       bottom: 5%;
       left: 50%;
       transform: translateX(-50%);
+      mix-blend-mode: difference;
+      color: #ffffff;
     }
     @media (max-width: 1000px) {
       justify-content: center;
