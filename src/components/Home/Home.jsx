@@ -60,6 +60,15 @@ const Home = () => {
             ease: "power3.inOut",
           },
           "<"
+        )
+        .from(
+          ".textTest",
+          {
+            opacity: 0,
+            duration: 1.5,
+            ease: "power3.inOut",
+          },
+          "-=0.5"
         );
     },
     { dependencies: [] }
