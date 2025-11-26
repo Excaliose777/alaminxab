@@ -31,13 +31,17 @@ const Home = () => {
         duration: 2,
         ease: "power3.inOut",
       })
-        .to(".hero__image", {
-          opacity: 1,
-          duration: 1.2,
-          // scale: 1,
-          clipPath: "polygon(0 100%, 100% 100%, 100% 0%, 0% 0%)",
-          ease: "power3.inOut",
-        })
+        .to(
+          ".hero__image",
+          {
+            opacity: 1,
+            duration: 1.2,
+            // scale: 1,
+            clipPath: "polygon(0 100%, 100% 100%, 100% 0%, 0% 0%)",
+            ease: "power3.inOut",
+          },
+          "<"
+        )
         .to(
           ".hero__imageOverlay",
           {
@@ -46,7 +50,7 @@ const Home = () => {
             ease: "power3.inOut",
             clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
           },
-          "-=0.8"
+          "<"
         )
         .to(
           ".image",
