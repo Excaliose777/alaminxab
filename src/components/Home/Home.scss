@@ -10,13 +10,27 @@
   &__imageCover {
     height: 100%;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &__image {
-    position: absolute;
-    inset: 0;
+    position: relative;
+    width: 30vw;
+    height: auto;
+    aspect-ratio: 3 / 4;
     overflow: hidden;
-    // border-radius: 30px;
+    // border-radius: 25px;
+
+    @media (max-width: 1000px) {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100vh;
+      border-radius: 0px;
+      aspect-ratio: auto;
+    }
 
     img {
       width: 100%;
@@ -32,7 +46,7 @@
       transform: translateX(-10%);
       z-index: 1;
       mix-blend-mode: difference;
-      font-size: 5rem;
+      font-size: 3rem;
 
       @media (max-width: 1024px) {
         font-size: 18rem;
@@ -50,9 +64,9 @@
   &__title {
     mix-blend-mode: difference;
     position: absolute;
-    bottom: 0;
+    top: 65%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     width: 100%;
     font-size: 18rem;
     text-align: center;
