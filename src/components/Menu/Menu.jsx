@@ -6,6 +6,7 @@ import { useGSAP } from "@gsap/react";
 import { startTransition, useEffect, useRef } from "react";
 // import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 gsap.registerPlugin(useGSAP);
 
 // const menuData = [
@@ -150,6 +151,10 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
     // }
   };
 
+  const handleLinkClick2 = () => {
+    setMenuOpen(false);
+  };
+
   return (
     <div className={`menu`} ref={menuRef}>
       <div className="menu__container">
@@ -184,14 +189,16 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
 
         {menuData2.map((menu, i) => (
           <div className="menu__menu" key={i}>
-            <div
+            <Link
               className="index"
-              onClick={(e) => handleLinkClick(menu.href, e)}
+              // onClick={(e) => handleLinkClick(menu.href, e)}
+              onClick={handleLinkClick2}
+              href={menu.href}
             >
               <div>{menu.index}</div>
               <div>{menu.name}</div>
               <div>&#8623;</div>
-            </div>
+            </Link>
             <div className="bar"></div>
           </div>
         ))}

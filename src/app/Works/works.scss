@@ -2,7 +2,6 @@
   padding: 100vh 0 0 0;
   position: relative;
   overflow: hidden;
-  color: #fff;
 
   .hero {
     display: flex;
@@ -10,6 +9,7 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
+    color: #cc001e;
   }
   .title {
     font-family: BebasNeue;

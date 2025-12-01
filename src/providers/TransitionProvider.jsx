@@ -1,0 +1,92 @@
+"use client";
+
+import { useRef, startTransition } from "react";
+import { gsap } from "gsap";
+import { TransitionRouter } from "next-transition-router";
+import "./TransitionProvider.scss";
+
+export function TransitionProvider({ children }) {
+  const firstLayer = useRef(null);
+  const secondLayer = useRef(null);
+
+  return (
+    <TransitionRouter
+      auto={true}
+      leave={(next, from, to) => {
+        console.log({ from, to });
+
+        const tl = gsap
+          .timeline({
+            onComplete: next,
+          })
+          .fromTo(
+            firstLayer.current,
+            { y: "100%" },
+            {
+              y: 0,
+              duration: 0.5,
+              ease: "circ.inOut",
+            }
+          )
+          .fromTo(
+            secondLayer.current,
+            {
+              y: "100%",
+            },
+            {
+              y: 0,
+              duration: 0.5,
+              ease: "circ.inOut",
+            },
+            "<50%"
+          );
+
+        return () => {
+          tl.kill();
+        };
+      }}
+      enter={(next) => {
+        const tl = gsap
+          .timeline()
+          .fromTo(
+            secondLayer.current,
+            { y: 0 },
+            {
+              y: "-100%",
+              duration: 0.5,
+              ease: "circ.inOut",
+            }
+          )
+          .fromTo(
+            firstLayer.current,
+            { y: 0 },
+            {
+              y: "-100%",
+              duration: 0.5,
+              ease: "circ.inOut",
+            },
+            "<50%"
+          )
+          .call(
+            () => {
+              // Defer React updates to prevent jank during animation
+              requestAnimationFrame(() => {
+                startTransition(next);
+              });
+            },
+            undefined,
+            "<50%"
+          );
+
+        return () => {
+          tl.kill();
+        };
+      }}
+    >
+      <main>{children}</main>
+
+      <div ref={firstLayer} className="first-layer " />
+      <div ref={secondLayer} className="second-layer " />
+    </TransitionRouter>
+  );
+}

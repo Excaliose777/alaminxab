@@ -1,16 +1,25 @@
 "use client";
 
-import { useState, useLayoutEffect, ViewTransition } from "react";
+import {
+  useState,
+  useLayoutEffect,
+  ViewTransition,
+  useRef,
+  startTransition,
+} from "react";
 import { gsap } from "gsap";
-
+import "./ClientWrapper.scss";
 import Header from "@/components/Header/Header";
 import Menu from "@/components/Menu/Menu";
 import Preloader from "@/components/Preloader/Preloader";
+import { TransitionRouter } from "next-transition-router";
 
 export default function ClientWrapper({ children }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [timeline, setTimeline] = useState(null);
+  const firstLayer = useRef(null);
+  const secondLayer = useRef(null);
 
   useLayoutEffect(() => {
     const context = gsap.context(() => {
@@ -27,10 +36,7 @@ export default function ClientWrapper({ children }) {
 
   return (
     <>
-      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-
-      <ViewTransition
+      {/* <ViewTransition
         name="page"
         onUpdate={(instance) => {
           instance.old.animate(
@@ -49,9 +55,85 @@ export default function ClientWrapper({ children }) {
             { duration: 1000, easing: "ease-in-out" }
           );
         }}
+      > */}
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <TransitionRouter
+        auto={true}
+        leave={(next) => {
+          const tl = gsap
+            .timeline({
+              onComplete: next,
+            })
+            .fromTo(
+              firstLayer.current,
+              { clipPath: "polygon(0% 100%, 0% 100%, 100% 100%, 100% 100%)" },
+              {
+                clipPath: "polygon(0% 100%, 0% 0%, 100% 0%, 100% 100%)",
+                duration: 0.8,
+                ease: "circ.inOut",
+              }
+            )
+            .fromTo(
+              secondLayer.current,
+
+              { clipPath: "polygon(0% 100%, 0% 100%, 100% 100%, 100% 100%)" },
+
+              {
+                clipPath: "polygon(0% 100%, 0% 0%, 100% 0%, 100% 100%)",
+                duration: 0.8,
+                ease: "circ.inOut",
+              },
+              "<50%"
+            );
+
+          return () => {
+            tl.kill();
+          };
+        }}
+        enter={(next) => {
+          const tl = gsap
+            .timeline()
+            .fromTo(
+              secondLayer.current,
+              { clipPath: "polygon(0% 100%, 0 0, 100% 0, 100% 100%)" },
+              {
+                clipPath: "polygon(0% 0%, 0 0, 100% 0, 100% 0%)",
+                duration: 0.8,
+                ease: "circ.inOut",
+              }
+            )
+            .fromTo(
+              firstLayer.current,
+              { clipPath: "polygon(0% 100%, 0 0, 100% 0, 100% 100%)" },
+              {
+                clipPath: "polygon(0% 0%, 0 0, 100% 0, 100% 0%)",
+                duration: 0.8,
+                ease: "circ.inOut",
+              },
+              "<50%"
+            )
+            .call(
+              () => {
+                // Defer React updates to prevent jank during animation
+                requestAnimationFrame(() => {
+                  startTransition(next);
+                });
+              },
+              undefined,
+              "<50%"
+            );
+
+          return () => {
+            tl.kill();
+          };
+        }}
       >
         {children}
-      </ViewTransition>
+        <div ref={firstLayer} className="first-layer" />
+        <div ref={secondLayer} className="second-layer" />
+      </TransitionRouter>
+      {/* </ViewTransition> */}
     </>
   );
 }
