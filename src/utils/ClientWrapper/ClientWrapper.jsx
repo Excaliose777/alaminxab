@@ -131,7 +131,9 @@ export default function ClientWrapper({ children }) {
       >
         {children}
         <div ref={firstLayer} className="first-layer" />
-        <div ref={secondLayer} className="second-layer" />
+        <div ref={secondLayer} className="second-layer">
+          <h1>AXAB</h1>
+        </div>
       </TransitionRouter>
       {/* </ViewTransition> */}
     </>

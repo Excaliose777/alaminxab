@@ -31,117 +31,85 @@
     }
   }
 }
-.lab .header {
-  position: absolute;
+
+.main-container {
+  margin-top: 36.25svh;
+  margin-bottom: 45svh;
+  display: flex;
   width: 100%;
-  text-align: center;
-  top: 25px;
-  left: 0;
-  font: 500 normal 13px/0.9 "IBM Plex Mono";
-  text-transform: uppercase;
-}
-.lab .pin-height {
-  height: 400vh;
-}
-.lab .container {
-  position: relative;
-  height: 100vh;
-  overflow: hidden; /* Hides anything exceeding the container */
-}
-.lab .circle {
-  width: 300%;
-  aspect-ratio: 1;
-  position: absolute;
-  top: 50%;
-  left: -100%;
-}
-.lab .cards {
-  width: 25vw;
-  aspect-ratio: 0.74;
-  border-radius: 0.6vw;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.lab .circle,
-.lab .cards,
-.lab .card,
-.lab .card-content {
-  pointer-events: none; // prevent circle layer from blocking clicks
+  flex-direction: column;
+  align-items: center;
+  gap: 18.5svh;
 }
 
-.lab .card {
+.list-container {
+  display: flex;
+  height: fit-content;
+  width: 45vw;
+  align-items: center;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container {
   position: relative;
-  width: 25vw;
-  aspect-ratio: 0.75;
+  width: 15vw;
   border-radius: 2vw;
   overflow: hidden;
-  object-fit: cover;
-  text-align: center;
-  text-transform: uppercase;
-  border: 0.5vw solid #f1f1f1;
+  aspect-ratio: 0.74;
+  border: 0.3vw solid #f1f1f1;
   padding: 1.5vw 0.5vw;
   @media (max-width: 1000px) {
-    width: 65vw;
-    padding: 3rem 1rem 6rem 1rem;
+    width: 50vw;
+    border: 1vw solid #f1f1f1;
   }
+}
 
-  img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-  }
+.link-style {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: Satoshi;
+  font-size: 0.5vw;
+  color: #ffffff;
+  text-decoration: none;
+  z-index: 2;
+  mix-blend-mode: difference;
+}
 
-  .card-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
+// .link-style {
+//   opacity: 0;
+//   transition: opacity 0.3s ease;
+// }
 
-    .card-top {
-      position: absolute;
-      top: 5%;
-      mix-blend-mode: difference;
-      color: #ffffff;
-    }
-    .card-bottom {
-      position: absolute;
-      bottom: 5%;
-      left: 50%;
-      transform: translateX(-50%);
-      mix-blend-mode: difference;
-      color: #ffffff;
-    }
-    @media (max-width: 1000px) {
-      justify-content: center;
-    }
-    .from {
-      text-decoration: none;
-      color: inherit;
-      font-family: Satoshi;
-      font-weight: 600;
-      cursor: pointer;
-      pointer-events: auto;
-    }
+// .image-container:hover .link-style {
+//   opacity: 1;
+// }
 
-    p {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.5em 1em;
-      font-family: Satoshi;
-      font-weight: 700;
-    }
+.image-style {
+  object-fit: cover;
+}
 
-    h2 {
-      font: 800 normal 3vw/0.8 "Inter", sans-serif;
-      text-wrap: auto;
-      padding: 0.2em 0 0.12em;
-    }
-  }
+.title-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  font-family: BebasNeue;
+  color: #ffffff;
+  mix-blend-mode: difference;
+  font-size: 10vw;
+  text-align: center;
+}
+
+.title-text {
+  display: flex;
+  gap: 1.25rem;
 }
