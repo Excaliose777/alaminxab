@@ -70,7 +70,7 @@ export default function ClientWrapper({ children }) {
               { clipPath: "polygon(0% 100%, 0% 100%, 100% 100%, 100% 100%)" },
               {
                 clipPath: "polygon(0% 100%, 0% 0%, 100% 0%, 100% 100%)",
-                duration: 0.8,
+                duration: 1,
                 ease: "circ.inOut",
               }
             )
@@ -81,7 +81,7 @@ export default function ClientWrapper({ children }) {
 
               {
                 clipPath: "polygon(0% 100%, 0% 0%, 100% 0%, 100% 100%)",
-                duration: 0.8,
+                duration: 1,
                 ease: "circ.inOut",
               },
               "<50%"
