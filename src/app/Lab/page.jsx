@@ -24,9 +24,9 @@ const LabData = [
     link: "https://curved-image-cursor.vercel.app/",
   },
   {
-    image: "/images/VoyageHermes/hires-moebius-voyagehermes-1.webp",
-    title: "Snow Flakes",
-    link: "https://www.google.com",
+    image: "/images/Lab/Crossy.png",
+    title: "Blender + ThreeJs",
+    link: "https://crossy-exp.vercel.app",
   },
   {
     image: "/images/VoyageHermes/hires-moebius-voyagehermes-5.webp",
