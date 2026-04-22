@@ -29,9 +29,9 @@ const LabData = [
     link: "https://crossy-exp.vercel.app",
   },
   {
-    image: "/images/VoyageHermes/hires-moebius-voyagehermes-5.webp",
-    title: "GSAP Flip",
-    link: "https://www.google.com",
+    image: "/images/Lab/Room.png",
+    title: "Blender + ThreeJs Pt2",
+    link: "https://blender-room-delta.vercel.app/",
   },
   {
     image: "/images/VoyageHermes/hires-moebius-voyagehermes-7.webp",
