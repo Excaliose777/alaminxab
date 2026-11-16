@@ -1,4 +1,8 @@
 .preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: hidden;
   height: 100dvh;
   width: 100%;
   background-color: white;
@@ -22,6 +26,7 @@
     height: 50%;
     width: 100%;
     z-index: 1;
+    will-change: transform;
   }
 
   &__topSection {

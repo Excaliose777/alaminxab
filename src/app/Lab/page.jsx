@@ -1,11 +1,9 @@
 "use client";
-import "./lab.scss";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import Image from "next/image";
-import ScrollTrigger from "gsap/ScrollTrigger";
+
 import { useEffect, useRef, useState } from "react";
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+import Image from "next/image";
+import { gsap, useGSAP } from "@/lib/gsap";
+import "./lab.scss";
 
 const LabData = [
   {
@@ -33,54 +31,31 @@ const LabData = [
     title: "Blender + ThreeJs Pt2",
     link: "https://blender-room-delta.vercel.app/",
   },
-  {
-    image: "/images/VoyageHermes/hires-moebius-voyagehermes-7.webp",
-    title: "Neon Waves",
-    link: "https://www.google.com",
-  },
 ];
 
-export default function Home() {
+export default function Lab() {
   const [activeIndex, setActiveIndex] = useState(null);
-  const titleRef = useRef(null);
+  const pageRef = useRef(null);
   const containerRefs = useRef([]);
 
+  // Show the title of the visible project closest to the viewport centre.
+  // Measured at most once per frame, and the listener is attached only once.
   useEffect(() => {
-    // const handleScroll = () => {
-    //   const viewportCenter = window.innerHeight / 2;
-    //   let closestIndex = 0;
-    //   let minDistance = Infinity;
+    let frame = null;
 
-    //   containerRefs.current.forEach((ref, index) => {
-    //     if (ref) {
-    //       const rect = ref.getBoundingClientRect();
-    //       const elementCenter = rect.top + rect.height / 2;
-    //       const distance = Math.abs(viewportCenter - elementCenter);
-    //       if (distance < minDistance) {
-    //         minDistance = distance;
-    //         closestIndex = index;
-    //       }
-    //     }
-    //   });
-
-    //   setActiveIndex(closestIndex);
-    // };
-
-    const handleScroll = () => {
-      const viewportCenter = window.innerHeight / 2;
+    const measure = () => {
+      frame = null;
+      const viewportHeight = window.innerHeight;
+      const viewportCenter = viewportHeight / 2;
       let closestIndex = null;
       let minDistance = Infinity;
 
-      containerRefs.current.forEach((ref, index) => {
-        if (!ref) return;
+      containerRefs.current.forEach((el, index) => {
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > viewportHeight) return;
 
-        const rect = ref.getBoundingClientRect();
-
-        if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-
-        const elementCenter = rect.top + rect.height / 2;
-        const distance = Math.abs(viewportCenter - elementCenter);
-
+        const distance = Math.abs(viewportCenter - (rect.top + rect.height / 2));
         if (distance < minDistance) {
           minDistance = distance;
           closestIndex = index;
@@ -90,42 +65,41 @@ export default function Home() {
       setActiveIndex(closestIndex);
     };
 
-    handleScroll();
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => {
+      if (frame === null) frame = requestAnimationFrame(measure);
     };
-  });
 
-  // useGSAP(() => {
-  //   if (activeIndex === null || !titleRef.current) return;
+    measure();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (frame !== null) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
 
-  //   gsap.fromTo(
-  //     titleRef.current,
-  //     { opacity: 0, y: 20 },
-  //     { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
-  //   );
-  // }, [activeIndex]);
-
-  useGSAP(() => {
-    gsap.utils.toArray(".list-container").forEach((container) => {
-      const scaleTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: container,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 0.5,
-        },
+  useGSAP(
+    () => {
+      gsap.utils.toArray(".list-container").forEach((container) => {
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: container,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 0.5,
+            },
+          })
+          .fromTo(container, { scale: 0.5 }, { scale: 2, ease: "none" })
+          .to(container, { scale: 0.5, ease: "none" });
       });
-      scaleTl
-        .fromTo(container, { scale: 0.5 }, { scale: 2, ease: "none" })
-        .to(container, { scale: 0.5, ease: "none" });
-    });
-  });
+    },
+    { scope: pageRef }
+  );
 
   return (
-    <>
+    <div ref={pageRef}>
       <div className="lab__container scroll">
         <h1>Lab</h1>
         <p>Scroll To View&#8623;</p>
@@ -133,13 +107,12 @@ export default function Home() {
       <main className="main-container">
         {LabData.map((project, index) => (
           <div
-            key={index}
+            key={project.link}
             ref={(el) => {
               containerRefs.current[index] = el;
             }}
             className="list-container"
           >
-            {/* <div > */}
             <a
               href={project.link}
               target="_blank"
@@ -150,21 +123,20 @@ export default function Home() {
                 src={project.image}
                 alt={project.title}
                 fill
+                sizes="(max-width: 1000px) 100vw, 30vw"
                 className="image-style"
-                // sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
               />
               <span className="link-style">View&#8623;</span>
             </a>
-            {/* </div> */}
           </div>
         ))}
 
         <div className="title-container">
           <div className="title-text">
-            <span ref={titleRef}>{LabData[activeIndex]?.title}</span>
+            <span>{LabData[activeIndex]?.title}</span>
           </div>
         </div>
       </main>
-    </>
+    </div>
   );
 }

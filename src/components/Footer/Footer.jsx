@@ -1,50 +1,40 @@
-import "./Footer.scss";
-import { gsap } from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
+"use client";
+
 import { useRef } from "react";
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+import { gsap, useGSAP } from "@/lib/gsap";
+import "./Footer.scss";
 
 const Footer = () => {
-  const footerRef = useRef();
+  const footerRef = useRef(null);
 
-  useGSAP(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: footerRef.current,
-        start: "start 50%",
-        end: "bottom bottom",
-        toggleActions: "play play resume reverse",
-        // markers:true,
-        // scrub:0.5
-      },
-    });
-
-    tl.from(".title", {
-      y: "100%",
-      duration: 1.25,
-      // opacity:0,
-    });
-  }, []);
+  useGSAP(
+    () => {
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: "top 50%",
+            end: "bottom bottom",
+            toggleActions: "play play resume reverse",
+          },
+        })
+        .from(".title", { yPercent: 100, duration: 1.25 });
+    },
+    { scope: footerRef }
+  );
 
   return (
-    <div className="footer" id="footer" ref={footerRef}>
+    <footer className="footer" id="footer" ref={footerRef}>
       <div className="footer__wrapper">
         <div className="footer__title">
           <p className="title">ALAMIN ABUBAKAR</p>
         </div>
 
-        {/* <div className='footer__image'>
-          <div className='footer__photo'>
-          <img style={{filter:'grayscale(100%)'}} src='/public/images/HOPH3880.JPG'/>
-          </div>
-          <p>One day at a time</p>
-        </div> */}
 
         <div className="footer__bottom">
           <div>
             <span>Copyright: </span>
-            <span>All Rights Reserved ©2024</span>
+            <span>All Rights Reserved ©{new Date().getFullYear()}</span>
           </div>
 
           <div>
@@ -57,7 +47,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

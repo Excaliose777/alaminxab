@@ -1,23 +1,20 @@
 .imageMain {
   position: relative;
-  overflow: hidden;
   height: 100vh;
   width: 100%;
+  // Clips the fixed child to this section's box.
+  clip-path: inset(0);
 
   &__container {
-    background-size: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    // height: 135%;
-    height: 100%;
+    position: fixed;
+    inset: 0;
+    height: 100vh;
     width: 100%;
+    pointer-events: none;
+  }
 
-    @media (max-width: 1024px) {
-      background-attachment: scroll;
-    }
+  &__image {
+    object-fit: cover;
+    object-position: center;
   }
 }

@@ -1,10 +1,9 @@
-import "./Contact.scss";
-import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
-import ScrollTrigger from "gsap/ScrollTrigger";
+"use client";
+
 import { useRef } from "react";
 import Image from "next/image";
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+import { gsap, useGSAP } from "@/lib/gsap";
+import "./Contact.scss";
 
 const data = [
   {
@@ -26,32 +25,32 @@ const data = [
 ];
 
 const Contact = () => {
-  const contactRef = useRef();
-  useGSAP(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: contactRef.current,
-        start: "start 50%",
-        end: "bottom bottom",
-        toggleActions: "play play resume reverse",
-        // markers:true,
-        // scrub:0.5
-      },
-    });
+  const contactRef = useRef(null);
 
-    tl.from(".paragraph", {
-      y: "100%",
-      stagger: 0.5,
-      duration: 1,
-    });
-  }, []);
+  useGSAP(
+    () => {
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: contactRef.current,
+            start: "top 50%",
+            end: "bottom bottom",
+            toggleActions: "play play resume reverse",
+          },
+        })
+        .from(".paragraph", { yPercent: 100, stagger: 0.5, duration: 1 });
+    },
+    { scope: contactRef }
+  );
+
   return (
     <div className="contact" id="contact" ref={contactRef}>
       <div className="contact__imageCover">
         <Image
           src="/images/VoyageHermes/hires-moebius-voyagehermes-1.webp"
           fill
-          alt="Voyage Hermes"
+          sizes="100vw"
+          alt="Voyage Hermes artwork by Moebius"
         />
         <div className="contact__card">
           <div className="contact__cardTitle">
@@ -61,7 +60,7 @@ const Contact = () => {
           <div className="contact__topLevel">
             <div className="para">
               <p className="paragraph">
-                I &apos;m always excited to discuss new projects and
+                I&apos;m always excited to discuss new projects and
                 collaboration opportunities.
               </p>
             </div>
@@ -109,8 +108,8 @@ const Contact = () => {
           <div className="contact__midLevel">•One day at a time•</div>
 
           <div className="contact__links">
-            {data.map((link, i) => (
-              <div key={i} className="contact__link">
+            {data.map((link) => (
+              <div key={link.name} className="contact__link">
                 <a
                   href={`${link.link}`}
                   target="_blank"

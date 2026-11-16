@@ -1,27 +1,35 @@
-import { useEffect, useState } from "react";
+"use client";
 
-const TimeDisplay = ({ timezone }) => {
-  const [currentTime, setCurrentTime] = useState(new Date());
+import { useEffect, useMemo, useState } from "react";
+
+const TimeDisplay = ({ timezone = "Africa/Lagos" }) => {
+  // Start empty so server and client markup match; fill in after mount.
+  const [now, setNow] = useState(null);
+
+  const formatter = useMemo(
+    () =>
+      new Intl.DateTimeFormat("en-US", {
+        timeZone: timezone,
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      }),
+    [timezone]
+  );
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-
-    return () => clearInterval(intervalId);
+    let timeoutId;
+    // Only minutes are shown, so tick once per minute, aligned to the minute boundary.
+    const tick = () => {
+      const date = new Date();
+      setNow(date);
+      timeoutId = setTimeout(tick, 60_000 - (date.getTime() % 60_000));
+    };
+    tick();
+    return () => clearTimeout(timeoutId);
   }, []);
 
-  const formatter = new Intl.DateTimeFormat("en-US", {
-    timeZone: timezone,
-    hour: "2-digit",
-    minute: "2-digit",
-    // second: "2-digit",
-    hour12: true,
-  });
-
-  const formattedTime = formatter.format(currentTime);
-
-  return formattedTime;
+  return now ? formatter.format(now) : "--:-- --";
 };
 
 export default TimeDisplay;

@@ -1,128 +1,110 @@
 "use client";
-import React, { useRef } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+
+import { useRef } from "react";
+import Image from "next/image";
+import { gsap, useGSAP } from "@/lib/gsap";
 import "./works.scss";
 
-const page = () => {
+const slides = [
+  {
+    title: "Kate Lovejoy Interiors",
+    text: "A modern interior design experience built with a WordPress CMS, ReactJS frontend, and elegant GSAP motion.",
+    link: "https://katelovejoy.com/",
+    tags: ["Elementor", "Wordpress", "ReactJs", "GSAP"],
+    image: "/images/Works/KateLovejoy.png",
+  },
+  {
+    title: "Nimbus Keyboards",
+    text: "A dynamic keyboard showcase powered by Prismic CMS, React, GSAP animations, and immersive Three.js visuals.",
+    link: "https://threejs-nimbus-keyboard.vercel.app/",
+    tags: ["ScrollTrigger", "Lenis", "Three.js", "React Three Fiber", "GSAP"],
+    image: "/images/Works/Nimbus.png",
+  },
+  {
+    title: "Engravelle",
+    text: "A clean, responsive WordPress + Elementor build designed to highlight the precision of laser engraving craftsmanship.",
+    link: "https://engravelle.com/",
+    tags: ["Wordpress", "Elementor"],
+    image: "/images/Works/Engravelle.png",
+  },
+  {
+    title: "The V-Collective",
+    text: "A high-end interior design collective experience using a headless WordPress backend, a ReactJS interface, and elegant GSAP transitions.",
+    link: "https://thevcollective.com/",
+    tags: ["Wordpress", "ReactJs", "GSAP", "Smooth Scrolling"],
+    image: "/images/Works/TheVCollective.png",
+  },
+];
+
+const Works = () => {
+  const pageRef = useRef(null);
   const sectionRef = useRef(null);
 
-  const slides = [
-    {
-      title: "Kate Lovejoy Interiors",
-      text: "A modern interior design experience built with a WordPress CMS, ReactJS frontend, and elegant GSAP motion.",
-      link: "https://katelovejoy.com/",
-      tags: ["Elementor", "Wordpress", "ReactJs", "GSAP"],
-      image: "/images/Works/KateLovejoy.png",
-    },
-    {
-      title: "Nimbus Keyboards",
-      text: "A dynamic keyboard showcase powered by Prismic CMS, React, GSAP animations, and immersive Three.js visuals.",
-      link: "https://threejs-nimbus-keyboard.vercel.app/",
-      tags: ["ScrollTrigger", "Lenis", "Three.js", "React Three Fiber", "GSAP"],
-      image: "/images/Works/Nimbus.png",
-    },
-    {
-      title: "Engravelle",
-      text: "A clean, responsive WordPress + Elementor build designed to highlight the precision of laser engraving craftsmanship.",
-      link: "https://engravelle.com/",
-      tags: ["Wordpress", "Elementor"],
-
-      image: "/images/Works/Engravelle.png",
-    },
-    {
-      title: "The V-Collective",
-      text: "A high-end interior design collective experience using a headless WordPress backend, a ReactJS interface, and elegant GSAP transitions.",
-      link: "https://thevcollective.com/",
-      tags: ["Wordpress", "ReactJs", "GSAP", "Smooth Scrolling"],
-      image: "/images/Works/TheVCollective.png",
-    },
-    // {
-    //   title: "Adaptability",
-    //   text: "The digital world evolves rapidly, and so do we. We're always ready to pivot and adjust to new trends, ensuring that our solutions remain relevant and impactful in a constantly changing landscape.",
-    //   num: "(05)",
-    //   image:
-    //     "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&q=80",
-    // },
-    // {
-    //   title: "Transparency",
-    //   text: "Honesty is at the heart of everything we do. From project timelines to costs, we communicate openly, keeping clients informed at every step to build trust and ensure peace of mind.",
-    //   num: "(06)",
-    //   image:
-    //     "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80",
-    // },
-  ];
-
-  useGSAP(() => {
-    const section = sectionRef.current;
-    const footer = document.querySelector(".page-footer");
-
-    if (!section) return;
-
-    gsap.to(".scroll", {
-      autoAlpha: 0,
-      duration: 0.2,
-      scrollTrigger: {
-        trigger: ".works",
-        start: "top top",
-        end: "top top-=1",
-        toggleActions: "play none reverse none",
-      },
-    });
-
-    const slideElements = document.querySelectorAll(".works .slide");
-    slideElements.forEach((slide) => {
-      const contentWrapper = slide.querySelector(".content-wrapper");
-      const content = slide.querySelector(".content");
-
-      gsap.to(content, {
-        rotationZ: (Math.random() - 0.5) * 10,
-        scale: 0.7,
-        rotationX: 40,
-        ease: "power1.in",
-        scrollTrigger: {
-          pin: contentWrapper,
-          trigger: slide,
-          start: "top 0%",
-          end: "+=" + window.innerHeight,
-          scrub: true,
-        },
-      });
-
-      gsap.to(content, {
+  useGSAP(
+    () => {
+      gsap.to(".scroll", {
         autoAlpha: 0,
-        ease: "power1.in",
+        duration: 0.2,
         scrollTrigger: {
-          trigger: content,
-          start: "top -80%",
-          end: "+=" + 0.2 * window.innerHeight,
-          scrub: true,
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "top top-=1",
+          toggleActions: "play none reverse none",
         },
       });
-    });
 
-    gsap.from(".page-footer", {
-      autoAlpha: 0,
-      // y: 50,
-      duration: 1,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: ".page-footer",
-        start: "top 50vh",
-        end: "bottom bottm",
-        toggleActions: "play none none reverse",
-      },
-    });
+      gsap.utils.toArray(".slide", sectionRef.current).forEach((slide) => {
+        const contentWrapper = slide.querySelector(".content-wrapper");
+        const content = slide.querySelector(".content");
 
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
+        gsap.to(content, {
+          rotationZ: (Math.random() - 0.5) * 10,
+          scale: 0.7,
+          rotationX: 40,
+          ease: "power1.in",
+          force3D: true,
+          scrollTrigger: {
+            pin: contentWrapper,
+            trigger: slide,
+            start: "top top",
+            // Function values are re-evaluated on refresh, so resizing keeps the timing right.
+            end: () => "+=" + window.innerHeight,
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        gsap.to(content, {
+          autoAlpha: 0,
+          ease: "power1.in",
+          scrollTrigger: {
+            trigger: content,
+            start: "top -80%",
+            end: () => "+=" + 0.2 * window.innerHeight,
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+        });
+      });
+
+      gsap.from(".page-footer", {
+        autoAlpha: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".page-footer",
+          start: "top 50%",
+          end: "bottom bottom",
+          toggleActions: "play none none reverse",
+        },
+      });
+      // useGSAP reverts these tweens and their ScrollTriggers on unmount.
+    },
+    { scope: pageRef }
+  );
 
   return (
-    <div style={{ minHeight: "100vh", backgroundColor: "#000" }}>
+    <div ref={pageRef} style={{ minHeight: "100vh", backgroundColor: "#000" }}>
       <section className="works" ref={sectionRef}>
         <div className="hero scroll">
           <h1 className="title ">WORKS</h1>
@@ -131,7 +113,7 @@ const page = () => {
 
         <div>
           {slides.map((slide, index) => (
-            <div className="slide" key={index}>
+            <div className="slide" key={slide.link}>
               <div className="content-wrapper">
                 <div className="content">
                   <a
@@ -170,7 +152,14 @@ const page = () => {
                     </div>
                     <div>
                       <p className="num">{`[0${index + 1}]`}</p>
-                      <img src={slide.image} alt={slide.title} />
+                      <Image
+                        src={slide.image}
+                        alt={slide.title}
+                        width={1920}
+                        height={1080}
+                        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 55vw, 45vw"
+                        style={{ width: "auto" }}
+                      />
                     </div>
                   </div>
                 </div>
@@ -183,7 +172,7 @@ const page = () => {
       <div className="page-footer">
         <h1>End</h1>
         <p>
-          Let's Work!{" "}
+          Let&apos;s Work!{" "}
           <a href="mailto:alaminxab@gmail.com">alaminxab@gmail.com</a>
         </p>
       </div>
@@ -191,4 +180,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Works;

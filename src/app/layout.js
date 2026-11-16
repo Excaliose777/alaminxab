@@ -1,23 +1,27 @@
 import ClientWrapper from "@/utils/ClientWrapper/ClientWrapper";
+import "lenis/dist/lenis.css";
 import "./globals.scss";
-import ReactLenis from "lenis/react";
-import Head from "next/head";
+
+const title = "Creative Web Developer - AlaminxAb";
+const description = "Frontend Developer Portfolio";
+const url = "https://alaminxab.vercel.app";
 
 export const metadata = {
-  title: "Creative Web Developer - AlaminxAb",
-  description: "Frontend Developer Portfolio",
+  metadataBase: new URL(url),
+  title,
+  description,
+  icons: { icon: "/images/favicon.jpeg" },
   openGraph: {
     type: "website",
-    url: "https://alaminxab.vercel.app",
-    title: "Creative Web Developer - AlaminxAb",
-    description: "Frontend Developer Portfolio",
+    url,
+    title,
+    description,
     images: ["/images/favicon.jpeg"],
   },
   twitter: {
     card: "summary_large_image",
-    url: "https://alaminxab.vercel.app/",
-    title: "Creative Web Developer - AlaminxAb",
-    description: "Frontend Developer Portfolio",
+    title,
+    description,
     images: ["/images/favicon.jpeg"],
   },
 };
@@ -25,16 +29,18 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <Head>
-        <link rel="icon" href="/images/favicon.jpeg" />
-        <meta prefix="og: http://ogp.me/ns#" />
-      </Head>
-
-      <ReactLenis root>
-        <body>
-          <ClientWrapper>{children}</ClientWrapper>
-        </body>
-      </ReactLenis>
+      <head>
+        <link
+          rel="preload"
+          href="/fonts/BebasNeue/BebasNeue-Regular.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+      </head>
+      <body>
+        <ClientWrapper>{children}</ClientWrapper>
+      </body>
     </html>
   );
 }
